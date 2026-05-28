@@ -1,0 +1,83 @@
+[
+  {
+    "Name": "Acme Corp - Platform Expansion",
+    "StageName": "Negotiation/Review",
+    "Amount": 250000,
+    "CloseDate": "2025-06-28",
+    "LastActivityDate": "2025-06-13",
+    "CreatedDate": "2025-04-15T09:12:00.000+0000",
+    "Owner": { "Name": "Dana Whitfield" }
+  },
+  {
+    "Name": "BrightLeaf - Starter Plan",
+    "StageName": "Proposal/Price Quote",
+    "Amount": 14000,
+    "CloseDate": "2025-07-08",
+    "LastActivityDate": "2025-06-11",
+    "CreatedDate": "2025-05-20T14:30:00.000+0000",
+    "Owner": { "Name": "Marcus Lee" }
+  },
+  {
+    "Name": "Northwind - Renewal Upsell",
+    "StageName": "Value Proposition",
+    "Amount": 60000,
+    "CloseDate": "2025-06-21",
+    "LastActivityDate": "2025-05-10",
+    "CreatedDate": "2025-05-01T11:05:00.000+0000",
+    "Owner": { "Name": "Priya Nair" }
+  },
+  {
+    "Name": "Vertex Holdings - Enterprise Rollout",
+    "StageName": "Qualification",
+    "Amount": 400000,
+    "CloseDate": "2025-06-06",
+    "LastActivityDate": "2025-04-28",
+    "CreatedDate": "2025-02-20T08:00:00.000+0000",
+    "Owner": { "Name": "Dana Whitfield" }
+  },
+  {
+    "Name": "Cedar Labs - Pilot",
+    "StageName": "Prospecting",
+    "Amount": 8000,
+    "CloseDate": "2025-06-10",
+    "LastActivityDate": "2025-05-02",
+    "CreatedDate": "2025-03-25T16:45:00.000+0000",
+    "Owner": { "Name": "Marcus Lee" }
+  },
+  {
+    "Name": "Orion Systems - Data Migration",
+    "StageName": "Proposal/Price Quote",
+    "Amount": 180000,
+    "CloseDate": "2025-06-19",
+    "LastActivityDate": "2025-05-29",
+    "CreatedDate": "2025-05-10T10:20:00.000+0000",
+    "Owner": { "Name": "Priya Nair" }
+  },
+  {
+    "Name": "Summit Retail - POS Upgrade",
+    "StageName": "Needs Analysis",
+    "Amount": 45000,
+    "CloseDate": "2025-07-25",
+    "LastActivityDate": "2025-06-14",
+    "CreatedDate": "2025-05-28T13:15:00.000+0000",
+    "Owner": { "Name": "Dana Whitfield" }
+  },
+  {
+    "Name": "Harbor Freight Co - Logistics Suite",
+    "StageName": "Negotiation/Review",
+    "Amount": 90000,
+    "CloseDate": "2025-06-09",
+    "LastActivityDate": "2025-05-12",
+    "CreatedDate": "2025-04-30T09:00:00.000+0000",
+    "Owner": { "Name": "Marcus Lee" }
+  },
+  {
+    "Name": "Lakeside Co - Add-on Seats",
+    "StageName": "Qualification",
+    "Amount": null,
+    "CloseDate": "2025-07-30",
+    "LastActivityDate": "2025-05-26",
+    "CreatedDate": "2025-04-20T12:00:00.000+0000",
+    "Owner": { "Name": "Priya Nair" }
+  }
+]

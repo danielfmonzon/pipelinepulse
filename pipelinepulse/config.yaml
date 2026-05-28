@@ -1,0 +1,63 @@
+# PipelinePulse configuration.
+# Secrets are NEVER stored here — they come from environment variables.
+# See .env.example for required credentials.
+
+# Map logical fields to Salesforce API field names (override per org if needed).
+salesforce_fields:
+  name: Name
+  stage: StageName
+  amount: Amount
+  close_date: CloseDate
+  last_activity_date: LastActivityDate
+  created_date: CreatedDate
+
+# Deterministic deal-health scoring. Each deal starts at 100; penalties subtract.
+scoring:
+  health_thresholds:
+    healthy: 75      # score >= 75  -> healthy
+    at_risk: 40      # score <  40  -> at-risk; in between -> slipping
+
+  activity:
+    stale_days_warn: 14
+    stale_days_critical: 30
+    penalty_warn: 15
+    penalty_critical: 30
+
+  close_date:
+    overdue_penalty: 35      # close date already in the past
+    near_close_days: 7       # closing very soon...
+    near_close_penalty: 15   # ...but not yet in the final stage
+
+  stage:
+    # Sales-process order; higher = closer to Closed Won.
+    order:
+      Prospecting: 1
+      Qualification: 2
+      Needs Analysis: 3
+      Value Proposition: 4
+      Proposal/Price Quote: 5
+      Negotiation/Review: 6
+    early_stage_max_order: 2   # stages <= this are "early"
+    stale_deal_age_days: 45    # open longer than this and still early = stuck
+    stuck_penalty: 20
+
+  amount:
+    enterprise_threshold: 100000
+    midmarket_threshold: 25000
+    large_deal_risk_penalty: 5   # extra emphasis when a big deal has open risk
+
+# Notion daily digest output.
+notion:
+  digest_title: Daily Pipeline Digest
+  max_flagged_deals: 25
+  include_healthy_in_table: false
+
+# Claude (Anthropic) settings. The API key comes from the environment.
+ai:
+  model: claude-sonnet-4-5-20250929
+  max_tokens: 1500
+  temperature: 0.2
+
+# Mock-mode behavior. A fixed reference date keeps the offline demo reproducible.
+demo:
+  reference_date: "2025-06-16"
