@@ -1,0 +1,56 @@
+name: Daily Pipeline Digest
+
+on:
+  schedule:
+    # 13:00 UTC every weekday (≈ 8-9am US Eastern). Adjust as needed.
+    - cron: "0 13 * * 1-5"
+  workflow_dispatch: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: Run tests
+        run: pytest -q
+      - name: Smoke-test the CLI (offline mock dry-run)
+        run: pipelinepulse --dry-run --use-mock-data
+
+  digest:
+    needs: test
+    runs-on: ubuntu-latest
+    # Only publish on the schedule or a manual dispatch, never on PRs.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    env:
+      SF_USERNAME: ${{ secrets.SF_USERNAME }}
+      SF_PASSWORD: ${{ secrets.SF_PASSWORD }}
+      SF_SECURITY_TOKEN: ${{ secrets.SF_SECURITY_TOKEN }}
+      SF_DOMAIN: ${{ secrets.SF_DOMAIN }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+      NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+      - name: Run daily digest
+        run: |
+          if [ -n "$SF_USERNAME" ] && [ -n "$NOTION_API_KEY" ]; then
+            echo "Credentials present — publishing live digest to Notion."
+            pipelinepulse --config config.yaml --verbose
+          else
+            echo "Secrets not configured — running offline mock dry-run instead."
+            pipelinepulse --dry-run --use-mock-data
+          fi

@@ -1,0 +1,13 @@
+services:
+  # Credential-free demo: prints the digest to the console.
+  demo:
+    build: .
+    command: ["--dry-run", "--use-mock-data"]
+
+  # Real run: pulls from Salesforce, scores, asks Claude, writes to Notion.
+  # Provide credentials via a local .env file (never committed).
+  digest:
+    build: .
+    env_file:
+      - .env
+    command: ["--config", "config.yaml", "--verbose"]

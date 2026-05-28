@@ -1,0 +1,5 @@
+simple-salesforce>=1.12.6
+anthropic>=0.39.0
+notion-client>=2.2.1
+pydantic>=2.6.0
+PyYAML>=6.0.1
