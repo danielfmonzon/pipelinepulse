@@ -116,7 +116,7 @@ FLAGGED DEALS
 [P1] Vertex Holdings - Enterprise Rollout  (at-risk, score 10)
      owner=Dana Whitfield  amount=$400,000  stage=Qualification  close=2025-06-06
      risk: No activity in 49 days (critical).; Close date is 10 days overdue.;
-           Open 116 days but still early-stage ('Qualification').; High-value deal with open risks.
+           Open 116 days but still early-stage ('Qualification').; High-value deal with open risks — prioritize.
      next: Re-baseline close date with Dana Whitfield; confirm the deal is still live.
 
 [P1] Orion Systems - Data Migration  (slipping, score 65)
@@ -129,7 +129,7 @@ FLAGGED DEALS
 
 ## Live Notion digest
 
-Posted automatically to a Notion database from live Salesforce data � deterministic health scores plus a Claude-written narrative (Summary, Key Risks, Forecasting Concerns, Recommended Next Steps):
+Posted automatically to a Notion database from live Salesforce data — deterministic health scores plus a Claude-written narrative (Summary, Key Risks, Forecasting Concerns, Recommended Next Steps):
 
 ![PipelinePulse Notion digest](docs/notion-digest.png)
 
