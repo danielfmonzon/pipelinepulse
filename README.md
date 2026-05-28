@@ -88,10 +88,10 @@ Secrets are read from the environment only — never from `config.yaml`. Copy `.
 
 ## Notion setup notes
 
-1. Create an internal integration at [notion.so/my-integrations](https://www.notion.so/my-integrations) and copy the token into `NOTION_API_KEY`.
-2. Create a database (e.g. "Pipeline Digests") with a **Name** title property.
-3. Share the database with your integration (••• → Connections).
-4. Copy the database ID from its URL into `NOTION_DATABASE_ID`.
+1. Go to [notion.so/profile/integrations](https://www.notion.so/profile/integrations) and create a new internal connection. Choose **Access token** (workspace-scoped) — not OAuth — and copy the token into `NOTION_API_KEY`.
+2. Create a full-page database (e.g. "Pipeline Digests") and attach a **data source** to it. Keep the title column named **Name**.
+3. From the database's ••• menu, open **Connections** and connect your integration.
+4. Copy the database ID from its URL into `NOTION_DATABASE_ID` — it's the 32-character string immediately before `?v=`.
 
 ## Dry-run demo
 
