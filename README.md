@@ -4,7 +4,7 @@
 
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![CI](https://github.com/OWNER/pipelinepulse/actions/workflows/daily-digest.yml/badge.svg)
+![CI](https://github.com/danielfmonzon/pipelinepulse/actions/workflows/daily-digest.yml/badge.svg)
 ![Tests](https://img.shields.io/badge/tests-pytest-0a9396)
 
 PipelinePulse pulls open opportunities from Salesforce, scores deal health with **deterministic, explainable rules**, and uses **Claude** to write a plain-English pipeline digest with recommended next actions — then posts it to **Notion** every morning. The math stays deterministic; the LLM only handles language.
@@ -57,7 +57,7 @@ Scheduled by GitHub Actions · runs reproducibly in Docker
 ## Quickstart
 
 ```bash
-git clone https://github.com/OWNER/pipelinepulse.git
+git clone https://github.com/danielfmonzon/pipelinepulse.git
 cd pipelinepulse
 
 python -m venv .venv && source .venv/bin/activate
@@ -84,7 +84,7 @@ Secrets are read from the environment only — never from `config.yaml`. Copy `.
 1. Create a free [Salesforce Developer Edition](https://developer.salesforce.com/signup) org.
 2. Reset your security token (Settings → Reset My Security Token); it arrives by email.
 3. Add a few open Opportunities with varied stages, amounts, and close dates.
-4. PipelinePulse queries `Name, StageName, Amount, CloseDate, LastActivityDate, CreatedDate, Owner.Name` where `IsClosed = false`. Field API names are configurable in `config.yaml`.
+4. PipelinePulse queries `Name, StageName, Amount, CloseDate, LastActivityDate, CreatedDate, danielfmonzon.Name` where `IsClosed = false`. Field API names are configurable in `config.yaml`.
 
 ## Notion setup notes
 
@@ -114,13 +114,13 @@ pipelinepulse --dry-run --use-mock-data
 FLAGGED DEALS
 ------------------------------------------------------------------------
 [P1] Vertex Holdings - Enterprise Rollout  (at-risk, score 10)
-     owner=Dana Whitfield  amount=$400,000  stage=Qualification  close=2025-06-06
+     danielfmonzon=Dana Whitfield  amount=$400,000  stage=Qualification  close=2025-06-06
      risk: No activity in 49 days (critical).; Close date is 10 days overdue.;
            Open 116 days but still early-stage ('Qualification').; High-value deal with open risks.
      next: Re-baseline close date with Dana Whitfield; confirm the deal is still live.
 
 [P1] Orion Systems - Data Migration  (slipping, score 65)
-     owner=Priya Nair  amount=$180,000  stage=Proposal/Price Quote  close=2025-06-19
+     danielfmonzon=Priya Nair  amount=$180,000  stage=Proposal/Price Quote  close=2025-06-19
      risk: No activity in 18 days.; Close date in 3 days but still in 'Proposal/Price Quote'.
      next: Priya Nair to re-engage — no contact in 18 days.
 ```
@@ -227,7 +227,7 @@ So PipelinePulse draws a hard line: the **scoring engine** owns every number and
 
 - Trend tracking (week-over-week health changes per deal).
 - Slack delivery alongside Notion.
-- Per-owner digest segmentation.
+- Per-danielfmonzon digest segmentation.
 - Configurable scoring profiles (conservative / aggressive).
 - Optional write-back of priority flags to Salesforce.
 
