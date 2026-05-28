@@ -48,7 +48,7 @@ Scheduled by GitHub Actions · runs reproducibly in Docker
 - **Salesforce integration** via `simple-salesforce` (open opportunities only, `IsClosed = false`).
 - **Deterministic deal-health scoring** — explainable rules for activity staleness, close-date slip, stage age, and amount weighting. Every score comes with `risk_reasons` and a `recommended_priority` (P1/P2/P3).
 - **Claude-generated narrative** — summary, key risks, forecasting concerns, and a next step per flagged deal. The LLM **never** recomputes the score.
-- **Notion publishing** — a formatted digest page with a callout summary and per-deal blocks.
+- **Notion publishing** — a formatted digest page with a callout summary and per-deal blocks. Large digests are batched in groups of 100 blocks per request to stay within the Notion API limit.
 - **Offline demo mode** — runs end-to-end with bundled mock data and no credentials.
 - **Graceful degradation** — if the Claude API is unavailable, a deterministic fallback digest is still produced.
 - **Config-driven** — thresholds and weights live in `config.yaml`, not in code.
