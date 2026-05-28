@@ -21,6 +21,9 @@ logger = logging.getLogger(__name__)
 
 _STATUS_EMOJI = {"at-risk": "🔴", "slipping": "🟠", "healthy": "🟢"}
 
+# Notion's API accepts at most 100 child blocks per create/append request.
+_MAX_BLOCKS = 100
+
 
 def write_digest(
     narrative: str,
@@ -52,13 +55,23 @@ def write_digest(
     title = f"{config.digest_title} — {reference_date.isoformat()}"
     children = _build_blocks(narrative, scored, summary, config)
 
+    # Notion caps a single request at 100 child blocks, so the page is created
+    # with the first batch and any remainder is appended in follow-up calls.
+    first_batch, remaining = children[:_MAX_BLOCKS], children[_MAX_BLOCKS:]
+
     try:
         page = client.pages.create(
             parent={"database_id": database_id},
             properties={"Name": {"title": [{"text": {"content": title}}]}},
-            children=children,
+            children=first_batch,
         )
-        logger.info("Posted digest to Notion: %s", page.get("id"))
+        page_id = page.get("id")
+        for start in range(0, len(remaining), _MAX_BLOCKS):
+            client.blocks.children.append(
+                block_id=page_id,
+                children=remaining[start : start + _MAX_BLOCKS],
+            )
+        logger.info("Posted digest to Notion: %s", page_id)
         return page
     except Exception as exc:  # noqa: BLE001
         logger.error("Failed to write digest to Notion: %s", exc)

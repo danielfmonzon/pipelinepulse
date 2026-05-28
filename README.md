@@ -127,6 +127,12 @@ FLAGGED DEALS
 
 (With `ANTHROPIC_API_KEY` set, the digest also includes a Claude-written narrative: Summary, Key Risks, Forecasting Concerns, and Recommended Next Steps.)
 
+## Live Notion digest
+
+Posted automatically to a Notion database from live Salesforce data — deterministic health scores plus a Claude-written narrative (Summary, Key Risks, Forecasting Concerns, Recommended Next Steps):
+
+![PipelinePulse Notion digest](docs/notion-digest.png)
+
 ## Prompt framework
 
 The Claude layer uses a single, versionable prompt template (`src/pipelinepulse/ai_insights.py`). It feeds the model the **already-scored** deals and constrains it to language only:
